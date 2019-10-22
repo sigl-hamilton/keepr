@@ -1,9 +1,9 @@
-const primaryStart = '#f18a69';
-const primaryEnd = '#d13e60';
+const primaryStart = '#000428';
+const primaryEnd = '#004e92';
 export const primaryGradientArray = [primaryStart, primaryEnd];
-export const lightWhite = '#fcefe9';
-export const inputPlaceholder = '#f1a895';
-export const lighterWhite = '#f4e4e2';
+export const lightWhite = '#e9ecfc';
+export const inputPlaceholder = '#a6dded';
+export const lighterWhite = '#ffffff';
 export const circleInactive = '#ecbfbe';
 export const circleActive = '#90ee90';
 export const itemListText = '#555555';

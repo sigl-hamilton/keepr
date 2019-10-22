@@ -21,6 +21,8 @@ import expo.modules.constants.ConstantsPackage;
 import expo.modules.permissions.PermissionsPackage;
 import expo.modules.filesystem.FileSystemPackage;
 
+import com.BV.LinearGradient.LinearGradientPackage; 
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -40,6 +42,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+          new LinearGradientPackage(), // linear gradient
           new ReanimatedPackage(),
           new RNGestureHandlerPackage(),
           new RNScreensPackage(),

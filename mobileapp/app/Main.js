@@ -7,7 +7,8 @@ import {
 	ScrollView,
 	AsyncStorage
 } from 'react-native';
-import { LinearGradient } from 'expo';
+import { LinearGradient } from 'expo-linear-gradient';
+//import LinearGradient from 'react-native-linear-gradient';
 import uuid from 'uuid/v1';
 
 import { primaryGradientArray } from './utils/Colors';
@@ -17,7 +18,7 @@ import Input from './components/Input';
 import List from './components/List';
 import Button from './components/Button';
 
-const headerTitle = 'Todo';
+const headerTitle = 'KeepR';
 
 class Main extends React.Component {
 	state = {
@@ -146,7 +147,7 @@ class Main extends React.Component {
 					<Header title={headerTitle} />
 				</View>
 				<View style={styles.inputContainer}>
-					<SubTitle subtitle={"What's Next?"} />
+					<SubTitle subtitle={"Ajouter un objet"} />
 					<Input
 						inputValue={inputValue}
 						onChangeText={this.newInputValue}
@@ -155,7 +156,7 @@ class Main extends React.Component {
 				</View>
 				<View style={styles.list}>
 					<View style={styles.column}>
-						<SubTitle subtitle={'Recent Notes'} />
+						<SubTitle subtitle={'Liste des objets'} />
 						<View style={styles.deleteAllButton}>
 							<Button deleteAllItems={this.deleteAllItems} />
 						</View>
