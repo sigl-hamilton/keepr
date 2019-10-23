@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export default class ObjectsList extends Component {
+export default class ObjectsListPage extends Component {
     render() {
         return (
             <div>
