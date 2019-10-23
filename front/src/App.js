@@ -1,26 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import "bootstrap/dist/css/bootstrap.min.css";
+
+import ObjectsList from "./Pages/ObjectsList.jsx";
+import ObjectAdd from "./Pages/ObjectAdd.jsx";
+
+import logo from "./images/logo-line.png";
+
+class App extends Component {
+    render() {
+        return (
+            <Router>
+                <div className="container">
+                    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+                        <a class="navbar-brand" href="/">
+                            <img src={logo} width="126" height="30" alt="/" />
+                        </a>
+                        <div className="collpase navbar-collapse">
+                            <ul className="navbar-nav mr-auto">
+                                <li className="navbar-item">
+                                    <Link to="/" className="nav-link">All the objects</Link>
+                                </li>
+                                <li className="navbar-item">
+                                    <Link to="/add" className="nav-link">Add an object</Link>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                    <br/>
+                    <Route path="/" exact component={ObjectsList} />
+                    <Route path="/add" component={ObjectAdd} />
+                </div>
+            </Router>
+        );
+    }
 }
 
 export default App;
