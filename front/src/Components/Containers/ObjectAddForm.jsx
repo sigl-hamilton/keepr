@@ -20,9 +20,6 @@ export default class ObjectAddForm extends Component {
         //const value = target.type === 'checkbox' ? target.checked : target.value;
         const name = target.name;
 
-        console.log(name);
-        console.log(target.value);
-
         this.setState({
             [name]: target.value
         });
