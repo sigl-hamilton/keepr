@@ -1,7 +1,11 @@
 const express = require('express');
-const app = express();
 const bodyParser = require('body-parser');
 const cors = require('cors');
+
+const registeredObjectView = require('./view/RegisteredObjectView');
+
+const app = express();
+
 var Sequelize = require('sequelize');
 const sequelize = new Sequelize('keepr', 'keepr', 'Keepr3306', {
     host: '127.0.0.1',
@@ -25,6 +29,8 @@ sequelize
 
 app.use(cors());
 app.use(bodyParser.json());
+
+registeredObjectView.exposeViews(app);
 
 app.listen(PORT, function() {
     console.log("Server is running on Port: " + PORT);
