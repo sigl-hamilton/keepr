@@ -1,7 +1,11 @@
-
+const dbInit = require("../model/init");
+const RegisteredObject = require("../model/RegisteredObjectModel")(dbInit.sequelize, dbInit.Sequelize);
 
 function getAllRegisteredObjects () {
     console.log("GET all registered objects");
+    RegisteredObject.findAll().then(objects => {
+        console.log("All registered objects:", JSON.stringify(objects, null, 4));
+    });
 }
 
 function getRegisteredObject (id) {

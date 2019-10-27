@@ -2,23 +2,14 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
+const dbInit = require("./model/init");
 const registeredObjectView = require('./view/RegisteredObjectView');
 
 const app = express();
-
-var Sequelize = require('sequelize');
-const sequelize = new Sequelize('keepr', 'keepr', 'Keepr3306', {
-    host: '127.0.0.1',
-    dialect: 'mysql'
-});
 const PORT = 4000;
 
-var RegisteredObject = sequelize.define('registered_object', {
-    code: Sequelize.STRING,
-    name: Sequelize.STRING
-});
-
-sequelize
+// Testing the connection
+dbInit.sequelize
     .authenticate()
     .then(() => {
         console.log('Connection has been established successfully.');
@@ -27,11 +18,14 @@ sequelize
         console.error('Unable to connect to the database:', err);
     });
 
+// Initializing express' app
 app.use(cors());
 app.use(bodyParser.json());
 
+// Exposing all the endpoints
 registeredObjectView.exposeViews(app);
 
+// Starting the listening loop
 app.listen(PORT, function() {
     console.log("Server is running on Port: " + PORT);
 });
