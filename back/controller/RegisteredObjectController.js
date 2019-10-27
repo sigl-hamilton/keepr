@@ -8,12 +8,16 @@ function getRegisteredObject (id) {
     console.log("GET one registered object (" + id.toString() + ")");
 }
 
-function createRegisteredObject (id, name, code) {
-    console.log("POST one registered object (" + id.toString() + ", " + name + ", " + code + ")");
+function createRegisteredObject (body) {
+    console.log("POST one registered object");
+    console.log("- name: " + body.name);
+    console.log("- code: " + body.code);
 }
 
-function updateRegisteredObject (id, newName, newCode) {
-    console.log("PUT one registered object (" + id.toString() + ", " + newName + ", " + newCode + ")");
+function updateRegisteredObject (id, body) {
+    console.log("PUT one registered object (" + id.toString() + ")");
+    console.log("- name: " + body.name);
+    console.log("- code: " + body.code);
 }
 
 function deleteRegisteredObject (id) {
