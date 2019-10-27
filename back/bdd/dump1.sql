@@ -15,3 +15,6 @@ INSERT INTO `keepr`.`registered_object` (`id`, `code`, `name`) VALUES ('3', 'tes
 ALTER TABLE `keepr`.`registered_object`
 ADD COLUMN `createdAt` VARCHAR(45) NULL AFTER `name`,
 ADD COLUMN `updatedAt` VARCHAR(45) NULL AFTER `createdAt`;
+
+ALTER TABLE `keepr`.`registered_object`
+CHANGE COLUMN `id` `id` INT(11) NOT NULL AUTO_INCREMENT;

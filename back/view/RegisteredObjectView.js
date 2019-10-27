@@ -1,31 +1,47 @@
-const controller = require('../controller/RegisteredObjectController');
 const bodyParser = require('body-parser');
+const dbInit = require("../model/init");
+const RegisteredObject = require("../model/RegisteredObjectModel")(dbInit.sequelize, dbInit.Sequelize);
 
-const jsonParser = bodyParser.json()
+const jsonParser = bodyParser.json();
 
 function exposeRegisteredObjectViews(app) {
     app.get('/registeredObject', (request, response) => {
-        controller.getAll();
-        response.send('API endpoint for getting all registered objects')
+        // Respond all the registeredObjects
+        response.type("json");
+        RegisteredObject.findAll().then(objects => {
+            response.send(JSON.stringify(objects));
+        });
     });
 
     app.get('/registeredObject/:id', (request, response) => {
-        controller.getOne(request.params.id);
-        response.send('API endpoint for getting registered object ' + request.params.id)
+        response.type("json");
+        // Respond the matching registeredObject
+        RegisteredObject.findByPk(request.params.id).then(object => {
+            response.send(JSON.stringify(object));
+        });
     });
 
     app.post('/registeredObject/', jsonParser, (request, response) => {
-        controller.createOne(request.body);
-        response.send('API endpoint for creating registered object')
+        response.type("json");
+        // Create a new user
+        const newObject = RegisteredObject.create({
+            name: request.body.name,
+            code: request.body.code,
+            createdAt: new Date().toString(),
+            updatedAt: new Date().toString()
+        }).then(object => {
+            console.log("New object's auto-generated ID:", object.id);
+        });
+        response.send(JSON.stringify(newObject));
     });
 
     app.put('/registeredObject/:id', jsonParser, (request, response) => {
-        controller.updateOne(request.params.id, request.body);
+        response.type("json");
         response.send('API endpoint for updating registered object ' + request.params.id)
     });
 
     app.delete('/registeredObject/:id', (request, response) => {
-        controller.deleteOne(request.params.id);
+        response.type("json");
         response.send('API endpoint for deleting registered object ' + request.params.id)
     });
 }
