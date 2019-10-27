@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 import {Button} from "reactstrap";
 
@@ -31,6 +32,14 @@ export default class ObjectAddForm extends Component {
         console.log(`Form submitted:`);
         console.log(`Object name: ${this.state.objectName}`);
         console.log(`Object code: ${this.state.objectCode}`);
+
+        const newObject = {
+            name: this.state.objectName,
+            code: this.state.objectCode
+        };
+
+        axios.post('http://localhost:4000/registeredObject', newObject)
+            .then(res => console.log(res.data));
 
         this.setState({
             objectName: '',
