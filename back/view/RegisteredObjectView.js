@@ -24,15 +24,14 @@ function exposeRegisteredObjectViews(app) {
     app.post('/registeredObject/', jsonParser, (request, response) => {
         response.type("json");
         // Create a new user
-        const newObject = RegisteredObject.create({
+        RegisteredObject.create({
             name: request.body.name,
             code: request.body.code,
             createdAt: new Date().toString(),
             updatedAt: new Date().toString()
         }).then(object => {
-            console.log("New object's auto-generated ID:", object.id);
-        });
-        response.send(JSON.stringify(newObject));
+            response.send(JSON.stringify(object));
+        }); // FIXME Error management
     });
 
     app.put('/registeredObject/:id', jsonParser, (request, response) => {
