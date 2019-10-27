@@ -5,6 +5,7 @@ const RegisteredObject = require("../model/RegisteredObjectModel")(dbInit.sequel
 const jsonParser = bodyParser.json();
 
 function exposeRegisteredObjectViews(app) {
+    // Returns all the registered objects
     app.get('/registeredObject', (request, response) => {
         // Respond all the registeredObjects
         response.type("json");
@@ -13,6 +14,7 @@ function exposeRegisteredObjectViews(app) {
         });
     });
 
+    // Returns ont registered object
     app.get('/registeredObject/:id', (request, response) => {
         response.type("json");
         // Respond the matching registeredObject
@@ -21,6 +23,7 @@ function exposeRegisteredObjectViews(app) {
         });
     });
 
+    // Creates a new registered object
     app.post('/registeredObject/', jsonParser, (request, response) => {
         response.type("json");
         // Create a new user
@@ -34,14 +37,28 @@ function exposeRegisteredObjectViews(app) {
         }); // FIXME Error management
     });
 
+    // Updates a registered object AND RETURNS THE NUMBER OF AFFECTED ROWS
     app.put('/registeredObject/:id', jsonParser, (request, response) => {
         response.type("json");
-        response.send('API endpoint for updating registered object ' + request.params.id)
+        RegisteredObject.update({
+            name: request.body.name,
+            code: request.body.code,
+            updatedAt: new Date().toString()
+        }, { where: { id: request.params.id }}).then(affectedRowsNb => {
+            response.send(JSON.stringify(affectedRowsNb));
+        });
     });
 
+    // Deletes a registered object
     app.delete('/registeredObject/:id', (request, response) => {
         response.type("json");
-        response.send('API endpoint for deleting registered object ' + request.params.id)
+        RegisteredObject.destroy({
+            where: {
+                id: request.params.id
+            }
+        }).then(affectedRowsNb => {
+            response.send(JSON.stringify(affectedRowsNb));
+        });
     });
 }
 
