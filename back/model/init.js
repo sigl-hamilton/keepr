@@ -1,7 +1,7 @@
 const DATABASE = "keepr";
 const USER = "keepr";
 const PASSWORD = "Keepr3306";
-const HOST = "127.0.0.1";
+const HOST = "localhost";
 const DIALECT = "mysql";
 
 const Sequelize = require('sequelize');

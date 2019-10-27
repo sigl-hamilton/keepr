@@ -8,6 +8,10 @@ const registeredObjectView = require('./view/RegisteredObjectView');
 const app = express();
 const PORT = 4000;
 
+// Initializing express' app
+app.use(cors());
+app.use(bodyParser.json());
+
 // Testing the connection
 dbInit.sequelize
     .authenticate()
@@ -17,10 +21,6 @@ dbInit.sequelize
     .catch(err => {
         console.error('Unable to connect to the database:', err);
     });
-
-// Initializing express' app
-app.use(cors());
-app.use(bodyParser.json());
 
 // Exposing all the endpoints
 registeredObjectView.exposeViews(app);

@@ -45,7 +45,7 @@ function exposeRegisteredObjectViews(app) {
             code: request.body.code,
             updatedAt: new Date().toString()
         }, { where: { id: request.params.id }}).then(affectedRowsNb => {
-            response.send(JSON.stringify(affectedRowsNb));
+            response.send(JSON.stringify(affectedRowsNb)); // FIXME Return format, compared to delete
         });
     });
 
@@ -57,7 +57,7 @@ function exposeRegisteredObjectViews(app) {
                 id: request.params.id
             }
         }).then(affectedRowsNb => {
-            response.send(JSON.stringify(affectedRowsNb));
+            response.send(JSON.stringify(affectedRowsNb)); // FIXME Return format, compared to update
         });
     });
 }
