@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   Platform
 } from 'react-native';
-import { MaterialIcons } from '@expo/vector-icons';
+import { MaterialIcons } from 'react-native-vector-icons';
 
 import {
   itemListText,

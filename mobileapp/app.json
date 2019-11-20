@@ -1,31 +1,4 @@
 {
-  "name": "keepr",
-  "displayName": "KeepR",
-  "expo": {
-    "name": "keepr",
-    "slug": "expo-template-bare",
-    "privacy": "unlisted",
-    "sdkVersion": "33.0.0",
-    "version": "1.0.0",
-    "entryPoint": "node_modules/expo/AppEntry.js",
-    "platforms": [
-      "ios",
-      "android",
-      "web"
-    ],
-    "android": {
-      "config": {
-        "googleSignIn": {
-          "apiKey": "AIzaSyDCXXXXXXXPBTDw9-22222vvYQJiE11111",
-          "certificateHash": "FFFFFFFFFFFFAA8BA9C47FF23A4E8FBAC5962675"
-        },
-        "branch": {
-          "apiKey": "key_live_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-        }
-      },
-      "package": "au.com.codeworkshop.food",
-      "versionCode": 1,
-      "permissions": []
-    }
-  }
+  "name": "mobileapp",
+  "displayName": "mobileapp"
 }
