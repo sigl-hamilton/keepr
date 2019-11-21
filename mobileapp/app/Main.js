@@ -17,6 +17,7 @@ import SubTitle from './components/SubTitle';
 import Input from './components/Input';
 import List from './components/List';
 import Button from './components/Button';
+import { Button as ReactButton } from 'react-native-elements';
 
 const headerTitle = 'KeepR';
 
@@ -143,7 +144,7 @@ class Main extends React.Component {
 		return (
 			<LinearGradient colors={primaryGradientArray} style={styles.container}>
 				<StatusBar barStyle="light-content" />
-				<View style={styles.centered}>
+				<View style={[styles.centered, styles.topmargin]}>
 					<Header title={headerTitle} />
 				</View>
 				<View style={styles.inputContainer}>
@@ -177,9 +178,17 @@ class Main extends React.Component {
 								))}
 						</ScrollView>
 					) : (
-						<ActivityIndicator size="large" color="white" />
-					)}
+							<ActivityIndicator size="large" color="white" />
+						)}
 				</View>
+
+				<View style={styles.detection} >
+					<ReactButton buttonStyle={styles.detectionButton}
+						title="Scan"
+						titleStyle={{fontSize: 21}}
+					/>
+				</View>
+
 			</LinearGradient>
 		);
 	}
@@ -188,6 +197,9 @@ class Main extends React.Component {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1
+	},
+	topmargin: {
+		marginTop: 20
 	},
 	centered: {
 		alignItems: 'center'
@@ -212,6 +224,16 @@ const styles = StyleSheet.create({
 	},
 	deleteAllButton: {
 		marginRight: 40
+	},
+	detection: {
+		margin: 20,
+		alignItems: 'center'
+	},
+	detectionButton: {
+		backgroundColor: "#008d92",
+		borderRadius: 6,
+		paddingHorizontal: 80,
+		paddingVertical: 5
 	}
 });
 
