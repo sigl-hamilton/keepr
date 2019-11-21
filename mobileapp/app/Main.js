@@ -16,7 +16,7 @@ import Header from './components/Header';
 import SubTitle from './components/SubTitle';
 import Input from './components/Input';
 import List from './components/List';
-import { Button } from './components/Button';
+//import { Buttons } from './components/Buttons';
 import { Button as ReactButton } from 'react-native-elements';
 
 const headerTitle = 'KeepR';
@@ -140,6 +140,7 @@ class Main extends React.Component {
 
         render() {
                 const { inputValue, loadingItems, allItems } = this.state;
+                console.log(allItems)
 
                 return (
                         <LinearGradient colors={primaryGradientArray} style={styles.container}>
@@ -159,7 +160,7 @@ class Main extends React.Component {
                                         <View style={styles.column}>
                                                 <SubTitle subtitle={'Liste des objets'} />
                                                 <View style={styles.deleteAllButton}>
-                                                        <Button deleteAllItems={this.deleteAllItems} />
+                                                        <ReactButton title="Supprimer" onPress={this.deleteAllItems} />
                                                 </View>
                                         </View>
 
@@ -170,10 +171,11 @@ class Main extends React.Component {
                                                                 .map(item => (
                                                                         <List
                                                                                 key={item.id}
-                                                                                {...item}
+                                                                                // Cette ligne bug mais je ne pense pas que le problème viens d'ici
+                                                                                // il marchais avant
+                                                                                //{...item}
                                                                                 deleteItem={this.deleteItem}
                                                                                 completeItem={this.completeItem}
-
                                                                                 incompleteItem={this.incompleteItem}
                                                                         />
                                                                 ))}
@@ -186,7 +188,7 @@ class Main extends React.Component {
                                 <View style={styles.detection} >
                                         <ReactButton buttonStyle={styles.detectionButton}
                                                 title="Scan"
-                                                titleStyle={{fontSize: 21}}
+                                                titleStyle={{ fontSize: 21 }}
                                         />
                                 </View>
 

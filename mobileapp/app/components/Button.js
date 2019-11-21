@@ -4,10 +4,10 @@ import MaterialIcons from 'react-native-vector-icons';
 
 import { lighterWhite } from '../utils/Colors';
 
-const Button = (deleteAllItems) => (
+const Buttons = ({ deleteAllItems }) => (
 	<TouchableOpacity onPress={deleteAllItems}>
 		<MaterialIcons name="delete-sweep" size={24} color={lighterWhite} />
 	</TouchableOpacity>
 );
 
-export default Button;
+export default Buttons;
