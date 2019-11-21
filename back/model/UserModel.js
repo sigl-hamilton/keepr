@@ -1,7 +1,7 @@
 
 
 module.exports = function(sequelize, DataTypes) {
-    return sequelize.define('registered_object', {
+    return sequelize.define('user', {
         // attributes
         id: {
             type: DataTypes.INTEGER,
@@ -22,6 +22,6 @@ module.exports = function(sequelize, DataTypes) {
             allowNull: false
         }
     }, {
-        tableName: 'registered_object'
+        tableName: 'user'
     });
 };

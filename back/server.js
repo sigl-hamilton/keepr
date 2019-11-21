@@ -4,6 +4,7 @@ const cors = require('cors');
 
 const dbInit = require("./model/init");
 const registeredObjectView = require('./view/RegisteredObjectView');
+const userView = require('./view/UserView');
 
 const app = express();
 const PORT = 4000;
@@ -24,6 +25,7 @@ dbInit.sequelize
 
 // Exposing all the endpoints
 registeredObjectView.exposeViews(app);
+userView.exposeViews(app);
 
 // Starting the listening loop
 app.listen(PORT, function() {

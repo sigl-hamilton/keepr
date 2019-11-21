@@ -4,7 +4,7 @@ const User = require("../model/UserModel")(dbInit.sequelize, dbInit.Sequelize);
 
 const jsonParser = bodyParser.json();
 
-function exposeRegisteredObjectViews(app) {
+function exposeUserViews(app) {
     // Returns all the registered objects
     app.get('/user', (request, response) => {
         // Respond all the registeredObjects
@@ -29,8 +29,8 @@ function exposeRegisteredObjectViews(app) {
         // Create a new user
         User.create({
             name: request.body.name,
-            email: request.body.code,
-            type: request.body.code,
+            email: request.body.email,
+            type: request.body.type,
             createdAt: new Date().toString(),
             updatedAt: new Date().toString()
         }).then(object => {
@@ -43,8 +43,8 @@ function exposeRegisteredObjectViews(app) {
         response.type("json");
         User.update({
             name: request.body.name,
-            email: request.body.code,
-            type: request.body.code,
+            email: request.body.email,
+            type: request.body.type,
             updatedAt: new Date().toString()
         }, { where: { id: request.params.id }}).then(affectedRowsNb => {
             response.send(JSON.stringify(affectedRowsNb)); // FIXME Return format, compared to delete
@@ -64,4 +64,4 @@ function exposeRegisteredObjectViews(app) {
     });
 }
 
-exports.exposeViews = exposeRegisteredObjectViews;
+exports.exposeViews = exposeUserViews;

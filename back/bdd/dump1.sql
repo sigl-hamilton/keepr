@@ -29,3 +29,7 @@ CREATE TABLE `keepr`.`user` (
 
 INSERT INTO `keepr`.`user` (`name`, `email`, `type`) VALUES ('Gabriel_Depotte', 'gabriel.depotte@epita.fr', 'admin');
 INSERT INTO `keepr`.`user` (`name`, `email`, `type`) VALUES ('Jojo_Palambas', 'jojo.palambas@caramail.gouv', 'user');
+
+ALTER TABLE `keepr`.`user`
+ADD COLUMN `createdAt` VARCHAR(45) NULL DEFAULT NULL AFTER `type`,
+ADD COLUMN `updatedAt` VARCHAR(45) NULL DEFAULT NULL AFTER `createdAt`;
