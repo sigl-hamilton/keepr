@@ -18,3 +18,14 @@ ADD COLUMN `updatedAt` VARCHAR(45) NULL AFTER `createdAt`;
 
 ALTER TABLE `keepr`.`registered_object`
 CHANGE COLUMN `id` `id` INT(11) NOT NULL AUTO_INCREMENT;
+
+CREATE TABLE `keepr`.`user` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NOT NULL,
+  `email` VARCHAR(45) NOT NULL,
+  `type` VARCHAR(45) NOT NULL DEFAULT 'user',
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `email_UNIQUE` (`email` ASC) VISIBLE);
+
+INSERT INTO `keepr`.`user` (`name`, `email`, `type`) VALUES ('Gabriel_Depotte', 'gabriel.depotte@epita.fr', 'admin');
+INSERT INTO `keepr`.`user` (`name`, `email`, `type`) VALUES ('Jojo_Palambas', 'jojo.palambas@caramail.gouv', 'user');
