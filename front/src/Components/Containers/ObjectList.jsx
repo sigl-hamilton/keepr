@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Table } from 'reactstrap';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 export default class ObjectList extends Component {
@@ -24,7 +23,6 @@ export default class ObjectList extends Component {
     }
 
     buildRows() {
-        console.log(this.state.objects);
         return this.state.objects.map((object, k) =>
             <tr key={k}>
                 <th>{object.id}</th>
