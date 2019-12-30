@@ -33,3 +33,18 @@ INSERT INTO `keepr`.`user` (`name`, `email`, `type`) VALUES ('Jojo_Palambas', 'j
 ALTER TABLE `keepr`.`user`
 ADD COLUMN `createdAt` VARCHAR(45) NULL DEFAULT NULL AFTER `type`,
 ADD COLUMN `updatedAt` VARCHAR(45) NULL DEFAULT NULL AFTER `createdAt`;
+
+ALTER TABLE `keepr`.`registered_object`
+ADD COLUMN `user_id` INT NULL AFTER `updatedAt`,
+ADD INDEX `user_id_idx` (`user_id` ASC) VISIBLE;
+
+ALTER TABLE `keepr`.`registered_object`
+ADD CONSTRAINT `user_id`
+  FOREIGN KEY (`user_id`)
+  REFERENCES `keepr`.`user` (`id`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
+
+UPDATE `keepr`.`registered_object` SET `user_id` = '2' WHERE (`id` = '1');
+UPDATE `keepr`.`registered_object` SET `user_id` = '2' WHERE (`id` = '2');
+UPDATE `keepr`.`registered_object` SET `user_id` = '2' WHERE (`id` = '3');
