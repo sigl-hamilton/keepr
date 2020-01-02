@@ -1,6 +1,7 @@
 const bodyParser = require('body-parser');
 const dbInit = require("../model/init");
 const RegisteredObject = require("../model/RegisteredObjectModel")(dbInit.sequelize, dbInit.Sequelize);
+const User = require("../model/UserModel")(dbInit.sequelize, dbInit.Sequelize);
 
 const jsonParser = bodyParser.json();
 
@@ -26,7 +27,24 @@ function exposeRegisteredObjectViews(app) {
     // Creates a new registered object
     app.post('/registeredObject/', jsonParser, (request, response) => {
         response.type("json");
-        // Create a new user
+
+        // Create a new object if the user id is valid
+        User.findByPk(request.body.userId).then(user => {
+            RegisteredObject.create({
+                name: request.body.name,
+                code: request.body.code,
+                createdAt: new Date().toString(),
+                updatedAt: new Date().toString(),
+                user_id: user.id
+            }).then(object => {
+                response.send(JSON.stringify(object));
+            }).catch(reason => {
+                response.send("Error: " + reason.toString())
+            });
+        }).catch(reason => {
+            response.send("Error: " + reason.toString())
+        });
+        /*
         RegisteredObject.create({
             name: request.body.name,
             code: request.body.code,
@@ -35,6 +53,7 @@ function exposeRegisteredObjectViews(app) {
         }).then(object => {
             response.send(JSON.stringify(object));
         }); // FIXME Error management
+        */
     });
 
     // Updates a registered object AND RETURNS THE NUMBER OF AFFECTED ROWS
