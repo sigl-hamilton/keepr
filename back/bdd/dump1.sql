@@ -48,3 +48,19 @@ ADD CONSTRAINT `user_id`
 UPDATE `keepr`.`registered_object` SET `user_id` = '2' WHERE (`id` = '1');
 UPDATE `keepr`.`registered_object` SET `user_id` = '2' WHERE (`id` = '2');
 UPDATE `keepr`.`registered_object` SET `user_id` = '2' WHERE (`id` = '3');
+
+CREATE TABLE `keepr`.`log` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `createdAt` VARCHAR(45) NULL,
+  `updatedAt` VARCHAR(45) NULL,
+  `method` VARCHAR(45) NULL,
+  `model` VARCHAR(45) NULL,
+  `user_id` INT NULL,
+  `comment` VARCHAR(45) NULL,
+  PRIMARY KEY (`id`),
+  INDEX `user_id_idx` (`user_id` ASC) VISIBLE,
+  CONSTRAINT `user_id`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `keepr`.`user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
