@@ -9,13 +9,11 @@ module.exports = function(sequelize, DataTypes) {
             autoIncrement: true,
             primaryKey: true
         },
-        name: {
-            type: DataTypes.STRING,
-            allowNull: false
+        method: {
+            type: DataTypes.STRING
         },
-        code: {
-            type: DataTypes.STRING,
-            allowNull: false
+        model: {
+            type: DataTypes.STRING
         },
         // It is possible to create foreign keys:
         user_id: {
@@ -26,6 +24,9 @@ module.exports = function(sequelize, DataTypes) {
                 // This is the column name of the referenced model
                 key: 'id',
             }
+        },
+        comment: {
+            type: DataTypes.STRING
         },
     }, {
         tableName: 'registered_object'
