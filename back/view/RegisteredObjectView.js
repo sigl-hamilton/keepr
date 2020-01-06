@@ -29,6 +29,14 @@ function exposeRegisteredObjectViews(app) {
         response.type("json");
         // Respond the matching registeredObject
         RegisteredObject.findByPk(request.params.id).then(object => {
+            // Logging the request
+            Log.create({
+                method: "GET",
+                model: "RegisteredObject",
+                user_id: object.user_id,
+                comment: request.params.id.toString()
+            });
+            // Sending the response
             response.send(JSON.stringify(object));
         });
     });
@@ -46,6 +54,14 @@ function exposeRegisteredObjectViews(app) {
                 updatedAt: new Date().toString(),
                 user_id: user.id
             }).then(object => {
+                // Logging the request
+                Log.create({
+                    method: "POST",
+                    model: "RegisteredObject",
+                    user_id: request.body.userId,
+                    comment: object.id
+                });
+                // Sending the response
                 response.send(JSON.stringify(object));
             }).catch(reason => {
                 response.send("Error: " + reason.toString())
@@ -53,16 +69,6 @@ function exposeRegisteredObjectViews(app) {
         }).catch(reason => {
             response.send("Error: " + reason.toString())
         });
-        /*
-        RegisteredObject.create({
-            name: request.body.name,
-            code: request.body.code,
-            createdAt: new Date().toString(),
-            updatedAt: new Date().toString()
-        }).then(object => {
-            response.send(JSON.stringify(object));
-        }); // FIXME Error management
-        */
     });
 
     // Updates a registered object AND RETURNS THE NUMBER OF AFFECTED ROWS
@@ -72,7 +78,19 @@ function exposeRegisteredObjectViews(app) {
             name: request.body.name,
             code: request.body.code,
             updatedAt: new Date().toString()
-        }, { where: { id: request.params.id }}).then(affectedRowsNb => {
+        }, {
+            where: { id: request.params.id }
+        }).then(affectedRowsNb => {
+            // Logging the request
+            RegisteredObject.findByPk(request.params.id).then(object => {
+                Log.create({
+                    method: "PUT",
+                    model: "RegisteredObject",
+                    user_id: object.user_id,
+                    comment: request.params.id
+                });
+            });
+            // Sending the response
             response.send(JSON.stringify(affectedRowsNb)); // FIXME Return format, compared to delete
         });
     });
@@ -80,12 +98,24 @@ function exposeRegisteredObjectViews(app) {
     // Deletes a registered object
     app.delete('/registeredObject/:id', (request, response) => {
         response.type("json");
-        RegisteredObject.destroy({
-            where: {
-                id: request.params.id
-            }
-        }).then(affectedRowsNb => {
-            response.send(JSON.stringify(affectedRowsNb)); // FIXME Return format, compared to update
+        console.log(request.params.id);
+        // Logging the request
+        RegisteredObject.findByPk(request.params.id).then(object => {
+            Log.create({
+                method: "DELETE",
+                model: "RegisteredObject",
+                user_id: object.user_id,
+                comment: request.params.id
+            });
+        }).then(() => {
+            RegisteredObject.destroy({
+                where: {
+                    id: request.params.id
+                }
+            }).then(affectedRowsNb => {
+                // Sending the response
+                response.send(JSON.stringify(affectedRowsNb)); // FIXME Return format, compared to update
+            });
         });
     });
 }
