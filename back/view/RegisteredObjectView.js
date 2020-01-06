@@ -2,6 +2,7 @@ const bodyParser = require('body-parser');
 const dbInit = require("../model/init");
 const RegisteredObject = require("../model/RegisteredObjectModel")(dbInit.sequelize, dbInit.Sequelize);
 const User = require("../model/UserModel")(dbInit.sequelize, dbInit.Sequelize);
+const Log = require("../model/LogModel")(dbInit.sequelize, dbInit.Sequelize);
 
 const jsonParser = bodyParser.json();
 
@@ -11,6 +12,14 @@ function exposeRegisteredObjectViews(app) {
         // Respond all the registeredObjects
         response.type("json");
         RegisteredObject.findAll().then(objects => {
+            // Logging the request
+            Log.create({
+                method: "GET",
+                model: "RegisteredObject",
+                user_id: null,
+                comment: null
+            });
+            // Sending the response
             response.send(JSON.stringify(objects));
         });
     });

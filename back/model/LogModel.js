@@ -29,6 +29,6 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.STRING
         },
     }, {
-        tableName: 'registered_object'
+        tableName: 'log'
     });
 };
