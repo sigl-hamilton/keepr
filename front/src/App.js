@@ -5,6 +5,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 import ObjectsListPage from "./Pages/ObjectsListPage.jsx";
 import ObjectAddPage from "./Pages/ObjectAddPage.jsx";
+import LoginPage from "./Pages/LoginPage.jsx";
 
 import logo from "./images/logo-line.png";
 
@@ -31,6 +32,7 @@ class App extends Component {
                     <br/>
                     <Route path="/" exact component={ObjectsListPage} />
                     <Route path="/add" component={ObjectAddPage} />
+                    <Route path="/login" component={LoginPage} />
                 </div>
             </Router>
         );
