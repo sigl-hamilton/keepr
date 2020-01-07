@@ -1,36 +1,21 @@
 import React, { Component } from 'react';
 import { Table } from 'reactstrap';
-import axios from 'axios';
-import axiosURL from "../../axios-config";
 
 export default class ObjectList extends Component {
     constructor(props) {
         super(props);
 
-        console.log("constructor");
-        console.log(props.appProps);
-        console.log("end of constructor");
-
         this.state = {
-            objects: [],
+            objects: props.objects,
             appProps: props.appProps
         };
-    }
 
-    componentDidMount() {
-        axios.get(axiosURL('registeredObject'))
-            .then(response => {
-                this.setState({
-                    objects: response.data
-                });
-            })
-            .catch(function (error){
-                console.log(error);
-            })
+        this.buildRows = this.buildRows.bind(this);
     }
 
     buildRows() {
-        return this.state.objects.map((object, k) =>
+        console.log(this.props);
+        return this.props.objects.map((object, k) =>
             <tr key={k}>
                 <th>{object.id}</th>
                 <td>{object.name}</td>
@@ -40,7 +25,6 @@ export default class ObjectList extends Component {
     }
 
     render() {
-        console.log(this.state.appProps);
         return (
             <Table>
                 <thead>

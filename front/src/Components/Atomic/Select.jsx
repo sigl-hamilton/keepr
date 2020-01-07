@@ -7,27 +7,18 @@ export default class Select extends Component {
         super(props);
 
         this.state = {
-            users: props.users,
-            enabled: (props.users && props.users.length > 0) && props.enabled,
-            currentUser: (props.users && props.users.length > 0) ? props.users[0] : null,
+            options: props.options,
+            enabled: (props.options && props.options.length > 0) && props.enabled,
+            currentOption: (props.options && props.options.length > 0) ? props.options[0] : null,
+            onChange: props.onChange
         };
 
-        this.handleInputChange = this.handleInputChange.bind(this);
-    }
-
-    handleInputChange(event) {
-        const target = event.target;
-        //const value = target.type === 'checkbox' ? target.checked : target.value;
-        const name = target.name;
-
-        this.setState({
-            [name]: target.value
-        });
+        this.buildSelect = this.buildSelect.bind(this);
     }
 
     buildSelect() {
-        return this.state.users.map((user, k) =>
-            <option key={k}>{user.id}</option>
+        return this.state.options.map((option, k) =>
+            <option key={k}>{option}</option>
         )
     }
 
@@ -40,7 +31,7 @@ export default class Select extends Component {
             return (
                 <div>
                     <Label for="exampleSelect">{label}</Label>
-                    <Input type="select" id={id}>
+                    <Input type="select" id={id} onChange={this.state.onChange}>
                         {options}
                     </Input>
                 </div>

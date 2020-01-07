@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React/*, { useState }*/ from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -6,16 +6,17 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import ObjectsListPage from "./Pages/ObjectsListPage.jsx";
 import ObjectAddPage from "./Pages/ObjectAddPage.jsx";
 import LoginPage from "./Pages/LoginPage.jsx";
-import AppliedRoute from "./Components/Atomic/AppliedRoute";
 
 import logo from "./images/logo-line.png";
 
 export default function App(props){
+    /*
     const [authenticatedUser, authenticateUser] = useState(null);
     let appProps = {
         authenticatedUser: authenticatedUser,
         authenticateUser: authenticateUser
     };
+    */
 
     console.log("load");
 
