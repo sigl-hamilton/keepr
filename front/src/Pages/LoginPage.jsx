@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button, Input, FormGroup, Label, Alert } from "reactstrap";
 import axios from "axios";
+import axiosURL from "../axios-config";
 
 export default function Login(props) {
     const [name, setName] = useState("");
@@ -13,7 +14,7 @@ export default function Login(props) {
     function handleSubmit(event) {
         event.preventDefault();
 
-        axios.get('http://localhost:4000/user')
+        axios.get(axiosURL("user"))
             .then(response => {
                 let foundUser = null;
                 response.data.forEach(user => {

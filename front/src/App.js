@@ -12,7 +12,12 @@ import logo from "./images/logo-line.png";
 
 export default function App(props){
     const [authenticatedUser, authenticateUser] = useState(null);
-    let appProps = {authenticatedUser: authenticatedUser, authenticateUser: authenticateUser};
+    let appProps = {
+        authenticatedUser: authenticatedUser,
+        authenticateUser: authenticateUser
+    };
+
+    console.log("load");
 
     return (
         <Router>
@@ -33,9 +38,9 @@ export default function App(props){
                     </div>
                 </nav>
                 <br/>
-                <Route path="/" exact render={(props) => <ObjectsListPage {...props} appProps={appProps} />} />
-                <Route path="/add" exact render={(props) => <ObjectAddPage {...props} appProps={appProps} />} />
-                <Route path="/login" exact render={(props) => <LoginPage {...props} appProps={appProps} />} />
+                <Route path="/" exact render={(props) => <ObjectsListPage {...props} appProps={"appProps"} />} />
+                <Route path="/add" exact render={(props) => <ObjectAddPage {...props} appProps={"appProps"} />} />
+                <Route path="/login" exact render={(props) => <LoginPage {...props} appProps={"appProps"} />} />
             </div>
         </Router>
     );

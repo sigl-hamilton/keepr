@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 import {Button} from "reactstrap";
+import axiosURL from "../../axios-config";
 
 export default class ObjectAddForm extends Component {
     constructor(props) {
@@ -38,7 +39,7 @@ export default class ObjectAddForm extends Component {
             code: this.state.objectCode
         };
 
-        axios.post('http://localhost:4000/registeredObject', newObject)
+        axios.post( axiosURL('registeredObject'), newObject)
             .then(res => console.log(res.data));
 
         this.setState({
