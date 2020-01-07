@@ -59,7 +59,7 @@ CREATE TABLE `keepr`.`log` (
   `comment` VARCHAR(45) NULL,
   PRIMARY KEY (`id`),
   INDEX `user_id_idx` (`user_id` ASC) VISIBLE,
-  CONSTRAINT `user_id`
+  CONSTRAINT `log_user_id`
     FOREIGN KEY (`user_id`)
     REFERENCES `keepr`.`user` (`id`)
     ON DELETE NO ACTION
