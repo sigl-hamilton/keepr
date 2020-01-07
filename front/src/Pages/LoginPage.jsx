@@ -23,8 +23,8 @@ export default function Login(props) {
                 if (foundUser == null)
                     setError(true);
                 else {
+                    props.appProps.authenticateUser(foundUser);
                     setError(false);
-                    console.log("Nice!")
                 }
             })
             .catch(function (error){
@@ -41,6 +41,8 @@ export default function Login(props) {
             );
         return null;
     }
+
+    console.log(props.appProps);
 
     return (
         <div className="Login">
