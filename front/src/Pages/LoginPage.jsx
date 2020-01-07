@@ -15,8 +15,17 @@ export default function Login(props) {
 
         axios.get('http://localhost:4000/user')
             .then(response => {
-                console.log(response.data)
-                setError(!error);
+                let foundUser = null;
+                response.data.forEach(user => {
+                    if (user.name === name)
+                        foundUser = user;
+                });
+                if (foundUser == null)
+                    setError(true);
+                else {
+                    setError(false);
+                    console.log("Nice!")
+                }
             })
             .catch(function (error){
                 console.log(error);
