@@ -43,8 +43,19 @@ export default function Login(props) {
         return null;
     }
 
+    function contidionnalSuccess() {
+        if (props.appProps.authenticatedUser != null)
+            return (
+                <Alert color="success">
+                    You are logged in!
+                </Alert>
+            );
+        return null;
+    }
+
     return (
         <div className="Login">
+            {contidionnalSuccess()}
             {conditionalError()}
             <form onSubmit={handleSubmit}>
                 <FormGroup>

@@ -1,4 +1,4 @@
-import React/*, { useState }*/ from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -11,13 +11,11 @@ import LoginPage from "./Pages/LoginPage.jsx";
 import logo from "./images/logo-line.png";
 
 export default function App(props){
-    /*
     const [authenticatedUser, authenticateUser] = useState(null);
     let appProps = {
         authenticatedUser: authenticatedUser,
         authenticateUser: authenticateUser
     };
-    */
 
     return (
         <Router>
@@ -28,6 +26,9 @@ export default function App(props){
                     </a>
                     <div className="collpase navbar-collapse">
                         <ul className="navbar-nav mr-auto">
+                            <li className="navbar-item">
+                                <Link to="/login" className="nav-link">Login</Link>
+                            </li>
                             <li className="navbar-item">
                                 <Link to="/" className="nav-link">All the objects</Link>
                             </li>
@@ -41,10 +42,10 @@ export default function App(props){
                     </div>
                 </nav>
                 <br/>
-                <Route path="/" exact render={(props) => <ObjectsListPage {...props} appProps={"appProps"} />} />
-                <Route path="/add" exact render={(props) => <ObjectAddPage {...props} appProps={"appProps"} />} />
-                <Route path="/login" exact render={(props) => <LoginPage {...props} appProps={"appProps"} />} />
-                <Route path="/logs" exact render={(props) => <LogsListPage {...props} appProps={"appProps"} />} />
+                <Route path="/" exact render={(props) => <ObjectsListPage {...props} appProps={appProps} />} />
+                <Route path="/add" exact render={(props) => <ObjectAddPage {...props} appProps={appProps} />} />
+                <Route path="/login" exact render={(props) => <LoginPage {...props} appProps={appProps} />} />
+                <Route path="/logs" exact render={(props) => <LogsListPage {...props} appProps={appProps} />} />
             </div>
         </Router>
     );
