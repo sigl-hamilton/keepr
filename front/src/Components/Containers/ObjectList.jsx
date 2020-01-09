@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Table } from 'reactstrap';
+import { Table, Button } from 'reactstrap';
 
 export default class ObjectList extends Component {
     constructor(props) {
@@ -19,6 +19,9 @@ export default class ObjectList extends Component {
                 <th>{object.id}</th>
                 <td>{object.name}</td>
                 <td>{object.code}</td>
+                <td>
+                    <Button color="primary" onClick={() => this.props.onDelete(object.id)}>Delete</Button>
+                </td>
             </tr>
         )
     }
@@ -31,6 +34,7 @@ export default class ObjectList extends Component {
                     <th>#</th>
                     <th>Name</th>
                     <th>Code</th>
+                    <th>Delete</th>
                 </tr>
                 </thead>
                 <tbody>

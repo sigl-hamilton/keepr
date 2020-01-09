@@ -11,11 +11,13 @@ export default class ObjectsListPage extends Component {
         this.state = {
             objects: [],
             possibleOwners: [],
-            owner: {id: -1}
+            owner: {id: -1},
+            deletions: 0,
         };
 
         this.setOwner = this.setOwner.bind(this);
         this.filterObjects = this.filterObjects.bind(this);
+        this.onDelete = this.onDelete.bind(this);
     }
 
     setOwner(newOwnerName) {
@@ -73,6 +75,19 @@ export default class ObjectsListPage extends Component {
         return options;
     }
 
+    onDelete(objectId) {
+        axios.delete(axiosURL('registeredObject/' + objectId.toString()))
+            .then(response => {
+                this.forceUpdate();
+            })
+            .catch(function (error){
+                console.error("Error: " + error.toString());
+            })
+            .finally(() => {
+                this.forceUpdate();
+            });
+    }
+
     render() {
         return (
             <div>
@@ -82,7 +97,7 @@ export default class ObjectsListPage extends Component {
                     enabled={true}
                     onChange={e => this.setOwner(e.target.value)}
                 />
-                <ObjectList objects={this.filterObjects()}/>
+                <ObjectList objects={this.filterObjects()} onDelete={this.onDelete}/>
             </div>
         )
     }
