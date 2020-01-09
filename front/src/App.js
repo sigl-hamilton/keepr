@@ -9,6 +9,7 @@ import ObjectAddPage from "./Pages/ObjectAddPage.jsx";
 import LoginPage from "./Pages/LoginPage.jsx";
 
 import logo from "./images/logo-line.png";
+import LogsChartPage from "./Pages/LogChartPage";
 
 export default function App(props){
     const [authenticatedUser, authenticateUser] = useState(null);
@@ -30,13 +31,16 @@ export default function App(props){
                                 <Link to="/login" className="nav-link">Login</Link>
                             </li>
                             <li className="navbar-item">
-                                <Link to="/" className="nav-link">All the objects</Link>
+                                <Link to="/" className="nav-link">Objects list</Link>
                             </li>
                             <li className="navbar-item">
                                 <Link to="/add" className="nav-link">Add an object</Link>
                             </li>
                             <li className="navbar-item">
-                                <Link to="/logs" className="nav-link">See logs list</Link>
+                                <Link to="/logs" className="nav-link">Logs list</Link>
+                            </li>
+                            <li className="navbar-item">
+                                <Link to="/activity" className="nav-link">Activity monitoring</Link>
                             </li>
                         </ul>
                     </div>
@@ -46,6 +50,7 @@ export default function App(props){
                 <Route path="/add" exact render={(props) => <ObjectAddPage {...props} appProps={appProps} />} />
                 <Route path="/login" exact render={(props) => <LoginPage {...props} appProps={appProps} />} />
                 <Route path="/logs" exact render={(props) => <LogsListPage {...props} appProps={appProps} />} />
+                <Route path="/activity" exact render={(props) => <LogsChartPage {...props} appProps={appProps} />} />
             </div>
         </Router>
     );
