@@ -117,6 +117,24 @@ function exposeRegisteredObjectViews(app) {
             });
         });
     });
+
+    // Deletes a registered object
+    app.delete('/registeredObject', (request, response) => {
+        response.type("json");
+        RegisteredObject.destroy({
+            where: {}
+        }).then(affectedRowsNb => {
+            // Logging the request
+            Log.create({
+                method: "DELETE",
+                model: "RegisteredObject",
+                user_id: null,
+                comment: null
+            });
+            // Sending the response
+            response.send(JSON.stringify(affectedRowsNb)); // FIXME Return format, compared to update
+        });
+    });
 }
 
 exports.exposeViews = exposeRegisteredObjectViews;
