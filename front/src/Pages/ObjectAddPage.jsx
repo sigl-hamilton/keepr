@@ -19,7 +19,7 @@ export default class ObjectAddPage extends Component {
             );
         else
             return(
-                <ObjectAddForm />
+                <ObjectAddForm appProps={this.props.appProps} />
             );
     }
 
