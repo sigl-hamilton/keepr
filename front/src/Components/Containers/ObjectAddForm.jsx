@@ -29,10 +29,6 @@ export default class ObjectAddForm extends Component {
     onSubmit(e) {
         e.preventDefault();
 
-        console.log(`Form submitted:`);
-        console.log(`Object name: ${this.state.objectName}`);
-        console.log(`Object code: ${this.state.objectCode}`);
-
         const newObject = {
             name: this.state.objectName,
             code: this.state.objectCode

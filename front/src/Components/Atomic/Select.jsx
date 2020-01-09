@@ -17,7 +17,7 @@ export default class Select extends Component {
     }
 
     buildSelect() {
-        return this.state.options.map((option, k) =>
+        return this.props.options.map((option, k) =>
             <option key={k}>{option}</option>
         )
     }

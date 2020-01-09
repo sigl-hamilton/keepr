@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import ObjectsListPage from "./Pages/ObjectsListPage.jsx";
+import LogsListPage from "./Pages/LogsListPage";
 import ObjectAddPage from "./Pages/ObjectAddPage.jsx";
 import LoginPage from "./Pages/LoginPage.jsx";
 
@@ -17,8 +18,6 @@ export default function App(props){
         authenticateUser: authenticateUser
     };
     */
-
-    console.log("load");
 
     return (
         <Router>
@@ -35,6 +34,9 @@ export default function App(props){
                             <li className="navbar-item">
                                 <Link to="/add" className="nav-link">Add an object</Link>
                             </li>
+                            <li className="navbar-item">
+                                <Link to="/logs" className="nav-link">See logs list</Link>
+                            </li>
                         </ul>
                     </div>
                 </nav>
@@ -42,6 +44,7 @@ export default function App(props){
                 <Route path="/" exact render={(props) => <ObjectsListPage {...props} appProps={"appProps"} />} />
                 <Route path="/add" exact render={(props) => <ObjectAddPage {...props} appProps={"appProps"} />} />
                 <Route path="/login" exact render={(props) => <LoginPage {...props} appProps={"appProps"} />} />
+                <Route path="/logs" exact render={(props) => <LogsListPage {...props} appProps={"appProps"} />} />
             </div>
         </Router>
     );

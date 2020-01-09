@@ -14,7 +14,6 @@ export default class ObjectList extends Component {
     }
 
     buildRows() {
-        console.log(this.props);
         return this.props.objects.map((object, k) =>
             <tr key={k}>
                 <th>{object.id}</th>

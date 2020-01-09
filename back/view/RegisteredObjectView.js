@@ -98,7 +98,6 @@ function exposeRegisteredObjectViews(app) {
     // Deletes a registered object
     app.delete('/registeredObject/:id', (request, response) => {
         response.type("json");
-        console.log(request.params.id);
         // Logging the request
         RegisteredObject.findByPk(request.params.id).then(object => {
             Log.create({

@@ -14,7 +14,6 @@ export default class LogList extends Component {
     }
 
     buildRows() {
-        console.log(this.props);
         return this.props.logs.map((log, k) =>
             <tr key={k}>
                 <th>{log.id}</th>

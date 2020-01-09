@@ -29,7 +29,7 @@ export default function Login(props) {
                 }
             })
             .catch(function (error){
-                console.log(error);
+                console.error("Error: " + error.toString());
             })
     }
 
@@ -42,8 +42,6 @@ export default function Login(props) {
             );
         return null;
     }
-
-    console.log(props.appProps);
 
     return (
         <div className="Login">

@@ -1,21 +1,21 @@
 import React, { Component } from 'react';
-import ObjectList from "../Components/Containers/ObjectList";
+import LogList from "../Components/Containers/LogList";
 import Select from "../Components/Atomic/Select";
 import axios from "axios";
 import axiosURL from "../axios-config";
 
-export default class ObjectsListPage extends Component {
+export default class LogsListPage extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            objects: [],
+            logs: [],
             possibleOwners: [],
             owner: {id: -1}
         };
 
         this.setOwner = this.setOwner.bind(this);
-        this.filterObjects = this.filterObjects.bind(this);
+        this.filterLogs = this.filterLogs.bind(this);
     }
 
     setOwner(newOwnerName) {
@@ -45,24 +45,25 @@ export default class ObjectsListPage extends Component {
                 console.error("Error: " + error.toString());
             });
 
-        axios.get(axiosURL('registeredObject'))
+        axios.get(axiosURL('log'))
             .then(response => {
                 this.setState({
-                    objects: response.data
+                    logs: response.data
                 });
             })
             .catch(function (error){
                 console.error("Error: " + error.toString());
-            })
+            });
     }
 
-    filterObjects() {
-        let filteredObjects = [];
-        this.state.objects.forEach((object) => {
-            if (this.state.owner.id === -1 || this.state.owner.id === object.user_id)
-                filteredObjects.push(object);
+    filterLogs() {
+        let filteredLogs = [];
+        console.log(this.state);
+        this.state.logs.forEach((log) => {
+            if (this.state.owner.id === -1 || this.state.owner.id === log.user_id)
+                filteredLogs.push(log);
         });
-        return filteredObjects;
+        return filteredLogs;
     }
 
     buildSelectOptions() {
@@ -82,7 +83,7 @@ export default class ObjectsListPage extends Component {
                     enabled={true}
                     onChange={e => this.setOwner(e.target.value)}
                 />
-                <ObjectList objects={this.filterObjects()}/>
+                <LogList logs={this.filterLogs()}/>
             </div>
         )
     }
